@@ -211,9 +211,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#B97A7A7A"
+            android:clickable="true"
             android:visibility="visible"
             tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="305dp">
+            tools:layout_editor_absoluteY="305dp"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/txt_game_over"
