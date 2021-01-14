@@ -160,7 +160,13 @@ class GameViewModel : ViewModel() {
 		} else {
 			dealCard(true)
 
-			if (playerCardCount == 5) {
+			if (playerCardCount == 3 &&
+				getCardValue(playerCard1.value ?: "") == 7 &&
+				getCardValue(playerCard2.value ?: "") == 7 &&
+				getCardValue(playerCard3.value ?: "") == 7
+			) {
+				gameOver()
+			} else if (playerCardCount == 5) {
 				gameOver()
 			}
 		}

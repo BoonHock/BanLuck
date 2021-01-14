@@ -21,4 +21,24 @@
     <string name="run_summary">Run: %d</string>
     <string name="tie_summary">Tie: %d</string>
     <string name="chinese_blackjack">Chinese Blackjack</string>
+    <string name="rules">Rules</string>
+    <string name="rules_text">
+        Rules according to Wikipedia\n\n
+        Point counting:\n
+        - K, Q, J = 10\n
+        - 10, 9, 8, 7, 6, 5, 4, 3, 2 = respective face value\n
+        - If your total number of cards is 2, then Ace = 11 or 10\n
+        - If your total number of cards is 3, then Ace = 10 or 1\n
+        - If your total number of cards is 4 or 5, then Ace = 1\n\n
+        Checking for Blackjack:\n
+        - Ace + Ace = ban-ban\n
+        - Ace + (10/J/Q/K) = ban-luck\n
+        - 15 points = free hand\n
+        - 7-7-7\n\n
+        Dealing:\n
+        - total &lt; 16, hit (add one card).\n
+        - total &gt;= 16 and &lt; 21, hit or stand.\n
+        - total = 21, stand.\n
+        - total &gt; 21, busts.\n
+    </string>
 </resources>

@@ -50,4 +50,9 @@
             android:name="runCount"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.fiyepr.banluck.screens.rules.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" />
 </navigation>
