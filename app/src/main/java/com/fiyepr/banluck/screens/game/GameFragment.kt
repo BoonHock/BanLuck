@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.fiyepr.banluck.MainActivity
 import com.fiyepr.banluck.R
 import com.fiyepr.banluck.databinding.FragmentGameBinding
 
@@ -66,7 +67,6 @@ class GameFragment : Fragment() {
 			binding.buttonDeal.isEnabled = !isMax
 		})
 		viewModel.gameStatus.observe(viewLifecycleOwner, { gameStatus ->
-//			GameViewModel.GameStatus
 			if (gameStatus != GameViewModel.GameStatus.ONGOING) {
 				// game's over
 				// set text in game over text
@@ -76,9 +76,11 @@ class GameFragment : Fragment() {
 					GameViewModel.GameStatus.RUN -> getString(R.string.game_run)
 					else -> getString(R.string.game_tie)
 				}
+
 				binding.gameOverLayout.visibility = View.VISIBLE // show game over layout
 				binding.txtComCardVal.visibility = View.VISIBLE // show com score
 
+				// display com's card
 				updateCardPng(viewModel.comCard1.value ?: "", binding.comCard1)
 				updateCardPng(viewModel.comCard2.value ?: "", binding.comCard2)
 				updateCardPng(viewModel.comCard3.value ?: "", binding.comCard3)
@@ -89,6 +91,7 @@ class GameFragment : Fragment() {
 				binding.gameOverLayout.visibility = View.GONE // hide game over layout
 				binding.txtComCardVal.visibility = View.INVISIBLE // hide com score
 
+				// hide com's card
 				binding.comCard1.setImageResource(R.drawable.yellow_back)
 				binding.comCard2.setImageResource(R.drawable.yellow_back)
 				binding.comCard3.setImageResource(R.drawable.yellow_back)
@@ -112,6 +115,7 @@ class GameFragment : Fragment() {
 		})
 
 		binding.buttonEndGame.setOnClickListener { view ->
+			// proceed to display score
 			view.findNavController().navigate(
 				GameFragmentDirections
 					.actionGameFragmentToScoreFragment(
@@ -122,10 +126,19 @@ class GameFragment : Fragment() {
 					)
 			)
 		}
+
+		binding.buttonAgain.setOnClickListener {
+			MainActivity.displayInterstitialAd()
+			viewModel.onAgain()
+		}
 		// Inflate the layout for this fragment
 		return binding.root
 	}
 
+	/*
+	 * update card imageView. if @is_player = true, will display card's front
+	 * else, display card's back
+	 * */
 	private fun updateCard(card: String, imgView: ImageView, is_player: Boolean) {
 		if (card.isEmpty()) {
 			imgView.visibility = View.INVISIBLE

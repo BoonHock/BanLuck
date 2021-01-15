@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "515052901026",
+    "project_id": "ban-luck-ae157",
+    "storage_bucket": "ban-luck-ae157.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515052901026:android:2d00542f501d92f8bb7dfb",
+        "android_client_info": {
+          "package_name": "com.fiyepr.banluck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515052901026-vpapg3sc4a8n946ff8uviqenm1j7r04e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fiyepr.banluck",
+            "certificate_hash": "0faa2990eb29079a9f2eb6d7f8c91e336f4a479c"
+          }
+        },
+        {
+          "client_id": "515052901026-p9qkqi4s56cce5v4o4011i04d2cpdpmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOiELknV0vsFH7NQBJhQKAJG6sbWYz_o8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515052901026-p9qkqi4s56cce5v4o4011i04d2cpdpmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

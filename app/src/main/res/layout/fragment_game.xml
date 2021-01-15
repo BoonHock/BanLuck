@@ -233,7 +233,6 @@
                 android:id="@+id/button_again"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{()->gameViewModel.onAgain()}"
                 android:text="@string/again"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txt_game_over"

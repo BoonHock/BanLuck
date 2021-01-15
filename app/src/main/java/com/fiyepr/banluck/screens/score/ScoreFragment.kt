@@ -7,15 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.fiyepr.banluck.MainActivity
 import com.fiyepr.banluck.R
 import com.fiyepr.banluck.databinding.FragmentScoreBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ScoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ScoreFragment : Fragment() {
+
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
@@ -26,9 +23,10 @@ class ScoreFragment : Fragment() {
 		binding.buttonNextMatch.setOnClickListener(
 			Navigation.createNavigateOnClickListener(R.id.action_scoreFragment_to_gameFragment)
 		)
-		binding.buttonEnd.setOnClickListener(
-			Navigation.createNavigateOnClickListener(R.id.action_scoreFragment_to_titleFragment)
-		)
+		binding.buttonEnd.setOnClickListener {
+			// user pressing end is equal to pressing back in this page
+			requireActivity().onBackPressed()
+		}
 
 		val args = ScoreFragmentArgs.fromBundle(requireArguments())
 
@@ -36,6 +34,9 @@ class ScoreFragment : Fragment() {
 		binding.txtLost.text = getString(R.string.lost_summary, args.lostCount)
 		binding.txtRun.text = getString(R.string.run_summary, args.runCount)
 		binding.txtTie.text = getString(R.string.tie_summary, args.tieCount)
+
+		// display interstitial ad
+		MainActivity.displayInterstitialAd()
 
 		// Inflate the layout for this fragment
 		return binding.root

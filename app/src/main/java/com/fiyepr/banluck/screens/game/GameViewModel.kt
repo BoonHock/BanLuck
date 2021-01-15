@@ -174,7 +174,8 @@ class GameViewModel : ViewModel() {
 
 	fun onDone() {
 		if (playerTotalVal < 16) {
-			// cannot done. must be more than or equal to 16
+			// player's card total value at hand must be more than or equal to 16
+			// otherwise must deal hard
 			_mustHitCard.value = true
 			return
 		}
