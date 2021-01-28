@@ -14,13 +14,13 @@
             android:layout_height="192dp"
             android:layout_marginBottom="32dp"
             android:contentDescription="@string/aces"
-            android:src="@drawable/pips"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:src="@drawable/pips" />
 
         <TextView
             android:id="@+id/textView"

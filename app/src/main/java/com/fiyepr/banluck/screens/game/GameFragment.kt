@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.fiyepr.banluck.MainActivity
 import com.fiyepr.banluck.R
 import com.fiyepr.banluck.databinding.FragmentGameBinding
+import com.google.android.material.snackbar.Snackbar
 
 class GameFragment : Fragment() {
 	private lateinit var viewModel: GameViewModel
@@ -106,10 +107,10 @@ class GameFragment : Fragment() {
 		})
 		viewModel.mustHitCard.observe(viewLifecycleOwner, { mustHit ->
 			if (mustHit) {
-				Toast.makeText(
-					this.context,
+				Snackbar.make(
+					binding.gameFragmentContent,
 					"Your card total is lesser than 16. Please deal card instead.",
-					Toast.LENGTH_SHORT
+					Snackbar.LENGTH_SHORT
 				).show()
 			}
 		})
@@ -126,11 +127,12 @@ class GameFragment : Fragment() {
 					)
 			)
 		}
-
 		binding.buttonAgain.setOnClickListener {
 			MainActivity.displayInterstitialAd()
 			viewModel.onAgain()
 		}
+
+		Glide.with(this).load(R.drawable.blue_back).into(binding.deck)
 		// Inflate the layout for this fragment
 		return binding.root
 	}
@@ -153,13 +155,15 @@ class GameFragment : Fragment() {
 	private fun updateCardPng(card: String, imgView: ImageView) {
 		if (card.isNotEmpty()) {
 			context?.resources?.let {
-				imgView.setImageResource(
-					it.getIdentifier(
-						"drawable/$card",
-						null,
-						context?.packageName
+				Glide.with(this)
+					.load(
+						it.getIdentifier(
+							"drawable/$card",
+							null,
+							context?.packageName
+						)
 					)
-				)
+					.into(imgView)
 			}
 		}
 	}

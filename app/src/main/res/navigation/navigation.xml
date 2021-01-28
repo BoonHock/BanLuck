@@ -50,6 +50,6 @@
     <fragment
         android:id="@+id/rulesFragment"
         android:name="com.fiyepr.banluck.screens.rules.RulesFragment"
-        android:label="fragment_rules"
+        android:label="Rules"
         tools:layout="@layout/fragment_rules" />
 </navigation>

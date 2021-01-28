@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:contentDescription="@string/aces"
-            android:src="@drawable/aces"
+            tools:src="@drawable/aces"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

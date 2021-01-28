@@ -16,15 +16,15 @@ class MainActivity : AppCompatActivity() {
 	private lateinit var drawerLayout: DrawerLayout
 	private lateinit var appBarConfiguration: AppBarConfiguration
 
-
 	companion object {
-		var adTimer: Long = System.currentTimeMillis()
+		// minus x seconds so that first interstitial appear earlier
+		var adTimer: Long = System.currentTimeMillis() - 40000
 		lateinit var mAdView: AdView
 		lateinit var mInterstitialAd: InterstitialAd
 
 		fun displayInterstitialAd() {
-			// show interstitial ads every 40s to prevent spamming user
-			if (System.currentTimeMillis() - adTimer > 40000 && mInterstitialAd.isLoaded) {
+			// show interstitial ads after at least 90s from previous one to prevent spam
+			if (System.currentTimeMillis() - adTimer > 90000 && mInterstitialAd.isLoaded) {
 				mInterstitialAd.show()
 				adTimer = System.currentTimeMillis()
 			}
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 		navController.addOnDestinationChangedListener { nc: NavController,
 														nd: NavDestination,
-														args: Bundle? ->
+														_: Bundle? ->
 			if (nd.id == nc.graph.startDestination) {
 				drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 			} else {

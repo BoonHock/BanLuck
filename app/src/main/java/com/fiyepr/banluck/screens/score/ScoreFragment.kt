@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.fiyepr.banluck.MainActivity
 import com.fiyepr.banluck.R
 import com.fiyepr.banluck.databinding.FragmentScoreBinding
@@ -27,6 +28,8 @@ class ScoreFragment : Fragment() {
 			// user pressing end is equal to pressing back in this page
 			requireActivity().onBackPressed()
 		}
+
+		Glide.with(this).load(R.drawable.aces).into(binding.imageView2)
 
 		val args = ScoreFragmentArgs.fromBundle(requireArguments())
 

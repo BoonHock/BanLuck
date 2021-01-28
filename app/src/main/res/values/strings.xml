@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Ban Luck</string>
     <!--  TESTING  -->
-<!--    <string name="adMobAppId">ca-app-pub-3940256099942544~3347511713</string>-->
-<!--    <string name="adUnitId_Banner">ca-app-pub-3940256099942544/6300978111</string>-->
-<!--    <string name="adUnitId_Interstitial">ca-app-pub-3940256099942544/1033173712</string>-->
+    <!--    <string name="adMobAppId">ca-app-pub-3940256099942544~3347511713</string>-->
+    <!--    <string name="adUnitId_Banner">ca-app-pub-3940256099942544/6300978111</string>-->
+    <!--    <string name="adUnitId_Interstitial">ca-app-pub-3940256099942544/1033173712</string>-->
     <!--  LIVE  -->
     <string name="adMobAppId">ca-app-pub-9307440651954861~3442958355</string>
     <string name="adUnitId_Banner">ca-app-pub-9307440651954861/2129876683</string>
@@ -50,4 +50,6 @@
         - total = 21, stand.\n
         - total &gt; 21, busts.\n
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

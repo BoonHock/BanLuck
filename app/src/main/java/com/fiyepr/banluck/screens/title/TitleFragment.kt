@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.fiyepr.banluck.R
 import com.fiyepr.banluck.databinding.FragmentTitleBinding
 
@@ -21,6 +22,7 @@ class TitleFragment : Fragment() {
 		binding.buttonStart.setOnClickListener(
 			Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
 		)
+		Glide.with(this).load(R.drawable.pips).into(binding.imageView)
 		// Inflate the layout for this fragment
 		return binding.root
 	}
