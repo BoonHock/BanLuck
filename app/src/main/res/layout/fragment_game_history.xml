@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.gamehistory.GameHistoryFragment">
+
+    <data>
+
+        <variable
+            name="gameHistoryViewModel"
+            type="com.fiyepr.banluck.screens.gamehistory.GameHistoryViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/game_history_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
+
+        <Button
+            android:id="@+id/button_clear_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->gameHistoryViewModel.onClear()}"
+            android:text="@string/clear" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textview_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{gameHistoryViewModel.historiesString}"
+                tools:text="TextView" />
+        </ScrollView>
+    </LinearLayout>
+</layout>
