@@ -12,8 +12,8 @@
     </data>
 
     <FrameLayout
-        android:layout_width="match_parent"
         android:id="@+id/game_fragment_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,12 +24,12 @@
                 android:id="@+id/deck"
                 style="@style/game_card"
                 android:contentDescription="@string/deck"
-                tools:src="@drawable/blue_back"
                 app:layout_constraintBottom_toTopOf="@+id/player_card_3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/com_card_3" />
+                app:layout_constraintTop_toBottomOf="@+id/com_card_3"
+                tools:src="@drawable/blue_back" />
 
             <Button
                 android:id="@+id/button_deal"
@@ -47,6 +47,7 @@
                 android:id="@+id/button_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="@{gameViewModel.doneButtonEnabled}"
                 android:onClick="@{()->gameViewModel.onDone()}"
                 android:text="@string/done"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,124 +61,124 @@
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
 
-                tools:src="@drawable/gray_back"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/player_card_3"
+                tools:src="@drawable/gray_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/player_card_5"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/gray_back"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/player_card_4"
                 app:layout_constraintTop_toTopOf="@+id/player_card_4"
+                tools:src="@drawable/gray_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/player_card_2"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/gray_back"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_3"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/player_card_1"
                 app:layout_constraintTop_toTopOf="@+id/player_card_3"
+                tools:src="@drawable/gray_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/player_card_4"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/gray_back"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_5"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/player_card_3"
                 app:layout_constraintTop_toTopOf="@+id/player_card_3"
+                tools:src="@drawable/gray_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/player_card_3"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/gray_back"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/txt_player_card_val"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_4"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/player_card_2"
                 app:layout_constraintTop_toBottomOf="@+id/deck"
+                tools:src="@drawable/gray_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/com_card_1"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/yellow_back"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_2"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
+                tools:src="@drawable/yellow_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/com_card_2"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/yellow_back"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_3"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_3"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/com_card_1"
+                tools:src="@drawable/yellow_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/com_card_3"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/yellow_back"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/deck"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_4"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/com_card_2"
                 app:layout_constraintTop_toBottomOf="@+id/txt_com_card_val"
+                tools:src="@drawable/yellow_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/com_card_4"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/yellow_back"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_3"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_5"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/com_card_3"
+                tools:src="@drawable/yellow_back"
                 tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/com_card_5"
                 style="@style/game_card"
                 android:contentDescription="@string/card1"
-                tools:src="@drawable/yellow_back"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/com_card_4"
+                tools:src="@drawable/yellow_back"
                 tools:visibility="visible" />
 
             <TextView

@@ -14,7 +14,7 @@ class RulesFragment : Fragment() {
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View? {
+	): View {
 		val binding: FragmentRulesBinding = DataBindingUtil.inflate(
 			inflater, R.layout.fragment_rules, container, false
 		)

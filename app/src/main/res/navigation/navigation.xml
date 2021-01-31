@@ -52,4 +52,9 @@
         android:name="com.fiyepr.banluck.screens.rules.RulesFragment"
         android:label="Rules"
         tools:layout="@layout/fragment_rules" />
+    <fragment
+        android:id="@+id/gameHistoryFragment"
+        android:name="com.fiyepr.banluck.screens.gamehistory.GameHistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_game_history" />
 </navigation>

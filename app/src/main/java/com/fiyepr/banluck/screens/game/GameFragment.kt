@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.fiyepr.banluck.MainActivity
 import com.fiyepr.banluck.R
+import com.fiyepr.banluck.database.GameDatabase
 import com.fiyepr.banluck.databinding.FragmentGameBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -27,7 +28,12 @@ class GameFragment : Fragment() {
 			inflater, R.layout.fragment_game, container, false
 		)
 
-		viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+		val application = requireNotNull(this.activity).application
+		val dataSource = GameDatabase.getInstance(application).gameDatabaseDao
+		val viewModelFactory = GameViewModelFactory(dataSource, application)
+
+		viewModel = ViewModelProvider(this, viewModelFactory)
+			.get(GameViewModel::class.java)
 		binding.gameViewModel = viewModel
 		binding.lifecycleOwner = this
 
@@ -117,6 +123,7 @@ class GameFragment : Fragment() {
 
 		binding.buttonEndGame.setOnClickListener { view ->
 			// proceed to display score
+			viewModel.onGameEnd()
 			view.findNavController().navigate(
 				GameFragmentDirections
 					.actionGameFragmentToScoreFragment(

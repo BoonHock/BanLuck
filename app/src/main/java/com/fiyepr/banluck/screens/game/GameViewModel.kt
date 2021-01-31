@@ -1,11 +1,19 @@
 package com.fiyepr.banluck.screens.game
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Transformations
+import com.fiyepr.banluck.database.GameDatabaseDao
+import com.fiyepr.banluck.database.GameHistory
+import kotlinx.coroutines.*
 import timber.log.Timber
 
-class GameViewModel : ViewModel() {
+class GameViewModel(
+	val database: GameDatabaseDao,
+	application: Application
+) : AndroidViewModel(application) {
 	private var gameWonCount: Int = 0
 	val wonCount: Int
 		get() = gameWonCount
@@ -110,8 +118,24 @@ class GameViewModel : ViewModel() {
 	val gameStatus: LiveData<GameStatus>
 		get() = _gameStatus
 
+	val doneButtonEnabled = Transformations.map(playerCard1) {
+		it.isNotEmpty()
+	}
+
+	private var viewModelJob = Job()
+
+	override fun onCleared() {
+		super.onCleared()
+		viewModelJob.cancel()
+	}
+
+	private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+	private var currentGame = MutableLiveData<GameHistory>()
+
 	init {
 		resetCards()
+		initialiseGame()
 	}
 
 	private fun resetCards() {
@@ -140,7 +164,6 @@ class GameViewModel : ViewModel() {
 	}
 
 	fun onDeal() {
-		Timber.i("onDeal")
 		// if player no card means game just started
 		if (playerCardCount == 0) {
 			// deal player cards
@@ -402,5 +425,72 @@ class GameViewModel : ViewModel() {
 			GameStatus.RUN -> gameRunCount++
 			else -> gameTieCount++
 		}
+		updateGameResults()
 	}
+
+	private fun initialiseGame() {
+		uiScope.launch {
+			// get ongoing (unfinished) game
+			currentGame.value = getCurrentGameFromDatabase()
+
+			// if no ongoing game, create new game
+			if (currentGame.value == null) {
+				val newGame = GameHistory()
+				insert(newGame)
+				currentGame.value = getCurrentGameFromDatabase()
+			}
+			gameWonCount = currentGame.value?.winCount ?: 0
+			gameLostCount = currentGame.value?.loseCount ?: 0
+			gameTieCount = currentGame.value?.tieCount ?: 0
+			gameRunCount = currentGame.value?.runCount ?: 0
+		}
+	}
+
+	private suspend fun getCurrentGameFromDatabase(): GameHistory? {
+		return withContext(Dispatchers.IO) {
+			var game = database.getCurrentGame()
+
+			if (game?.hasEnded == true) {
+				game = null
+			}
+			game
+		}
+	}
+
+	private suspend fun insert(game: GameHistory) {
+		withContext(Dispatchers.IO) {
+			database.insert(game)
+		}
+	}
+
+	private fun updateGameResults() {
+		uiScope.launch {
+			val game = currentGame.value ?: return@launch
+
+			game.winCount = wonCount
+			game.loseCount = lostCount
+			game.runCount = runCount
+			game.tieCount = tieCount
+
+			update(game)
+		}
+	}
+
+	private suspend fun update(game: GameHistory) {
+		withContext(Dispatchers.IO) {
+			database.update(game)
+		}
+	}
+
+	fun onGameEnd() {
+		uiScope.launch {
+			val game = currentGame.value ?: return@launch
+
+			game.matchTimeMilli = System.currentTimeMillis()
+			game.hasEnded = true
+
+			update(game)
+		}
+	}
+
 }

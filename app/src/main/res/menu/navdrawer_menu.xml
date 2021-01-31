@@ -5,4 +5,8 @@
         android:id="@+id/rulesFragment"
         android:icon="@drawable/rules"
         android:title="@string/rules" />
+    <item
+        android:id="@+id/gameHistoryFragment"
+        android:icon="@drawable/history"
+        android:title="@string/history" />
 </menu>
