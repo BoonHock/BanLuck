@@ -1,15 +1,14 @@
 package com.fiyepr.banluck.screens.gamehistory
 
-import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.fiyepr.banluck.convertLongToDateString
 import com.fiyepr.banluck.database.GameDatabaseDao
 import com.fiyepr.banluck.database.GameHistory
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
 
 class GameHistoryViewModel(
 	val database: GameDatabaseDao,
@@ -28,7 +27,7 @@ class GameHistoryViewModel(
 
 	private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-	private val histories = database.getAllHistories()
+	val histories = database.getAllHistories()
 
 	val historiesString = Transformations.map(histories) { histories ->
 		formatHistories(histories)
@@ -45,11 +44,7 @@ class GameHistoryViewModel(
 			str += "Run : " + it.runCount + "\n"
 			str += "Tie : " + it.tieCount + "\n"
 		}
-
 		return str
-	}
-
-	init {
 	}
 
 	fun onClear() {
@@ -69,18 +64,4 @@ class GameHistoryViewModel(
 		_showSnackbarEvent.value = false
 	}
 
-	/**
-	 * Take the Long milliseconds returned by the system and stored in Room,
-	 * and convert it to a nicely formatted string for display.
-	 *
-	 * EEEE - Display the long letter version of the weekday
-	 * MMM - Display the letter abbreviation of the nmotny
-	 * dd-yyyy - day in month and full year numerically
-	 * HH:mm - Hours and minutes in 24hr format
-	 */
-	@SuppressLint("SimpleDateFormat")
-	fun convertLongToDateString(systemTime: Long): String {
-		return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
-			.format(systemTime).toString()
-	}
 }

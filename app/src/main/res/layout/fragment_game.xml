@@ -59,7 +59,7 @@
             <ImageView
                 android:id="@+id/player_card_1"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
 
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_2"
@@ -73,7 +73,7 @@
             <ImageView
                 android:id="@+id/player_card_5"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -85,7 +85,7 @@
             <ImageView
                 android:id="@+id/player_card_2"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_3"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -97,7 +97,7 @@
             <ImageView
                 android:id="@+id/player_card_4"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_5"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -109,7 +109,7 @@
             <ImageView
                 android:id="@+id/player_card_3"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/txt_player_card_val"
                 app:layout_constraintEnd_toStartOf="@+id/player_card_4"
@@ -122,7 +122,7 @@
             <ImageView
                 android:id="@+id/com_card_1"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_2"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_2"
@@ -135,7 +135,7 @@
             <ImageView
                 android:id="@+id/com_card_2"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_3"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_3"
@@ -147,7 +147,7 @@
             <ImageView
                 android:id="@+id/com_card_3"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/deck"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_4"
@@ -160,7 +160,7 @@
             <ImageView
                 android:id="@+id/com_card_4"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_3"
                 app:layout_constraintEnd_toStartOf="@+id/com_card_5"
@@ -172,7 +172,7 @@
             <ImageView
                 android:id="@+id/com_card_5"
                 style="@style/game_card"
-                android:contentDescription="@string/card1"
+                android:contentDescription="@string/card"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/com_card_3"
                 app:layout_constraintEnd_toEndOf="parent"

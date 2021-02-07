@@ -210,11 +210,6 @@ class GameViewModel(
 		}
 
 		gameOver()
-
-		Timber.i("Player total: %s", playerTotalVal)
-		Timber.i("Player ace count: %s", playerAceCount)
-		Timber.i("Com total: %s", comTotalVal)
-		Timber.i("Com ace count: %s", comAceCount)
 	}
 
 	fun onAgain() {
@@ -226,8 +221,6 @@ class GameViewModel(
 
 		do {
 			card = mutableSetOf("c", "d", "h", "s").random() + (1..13).random()
-
-			Timber.i("card: %s", card)
 		} while (
 			(!_playerCard1.value.isNullOrEmpty() && _playerCard1.value == card) ||
 			(!_playerCard2.value.isNullOrEmpty() && _playerCard2.value == card) ||
@@ -409,6 +402,8 @@ class GameViewModel(
 			GameStatus.RUN -> gameRunCount++
 			else -> gameTieCount++
 		}
+
+		updateGameResults()
 	}
 
 	private fun gameOver() {
@@ -439,6 +434,7 @@ class GameViewModel(
 				insert(newGame)
 				currentGame.value = getCurrentGameFromDatabase()
 			}
+
 			gameWonCount = currentGame.value?.winCount ?: 0
 			gameLostCount = currentGame.value?.loseCount ?: 0
 			gameTieCount = currentGame.value?.tieCount ?: 0
@@ -467,6 +463,12 @@ class GameViewModel(
 		uiScope.launch {
 			val game = currentGame.value ?: return@launch
 
+			Timber.i("update game results")
+			Timber.i("wonCount : %s", wonCount)
+			Timber.i("lostCount : %s", lostCount)
+			Timber.i("runCount : %s", runCount)
+			Timber.i("tieCount : %s", tieCount)
+
 			game.winCount = wonCount
 			game.loseCount = lostCount
 			game.runCount = runCount
@@ -479,6 +481,7 @@ class GameViewModel(
 	private suspend fun update(game: GameHistory) {
 		withContext(Dispatchers.IO) {
 			database.update(game)
+			Timber.i("game successfully ended")
 		}
 	}
 
