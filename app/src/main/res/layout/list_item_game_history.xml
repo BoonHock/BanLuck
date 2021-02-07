@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_history"
@@ -21,6 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            app:gameImage="@{game}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,6 +44,7 @@
                 android:id="@+id/txt_history_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:GameDateString="@{game}"
                 tools:text="12 Dec 2019" />
 
             <LinearLayout
@@ -55,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:gameWonString="@{game}"
                     tools:text="@string/won_summary" />
 
                 <TextView
@@ -62,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:gameLostString="@{game}"
                     tools:text="@string/lost_summary" />
 
             </LinearLayout>
@@ -76,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:gameTieString="@{game}"
                     tools:text="@string/tie_summary" />
 
                 <TextView
@@ -83,6 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:gameRunString="@{game}"
                     tools:text="@string/run_summary" />
             </LinearLayout>
 

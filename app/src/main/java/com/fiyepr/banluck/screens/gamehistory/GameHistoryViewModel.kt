@@ -29,24 +29,6 @@ class GameHistoryViewModel(
 
 	val histories = database.getAllHistories()
 
-	val historiesString = Transformations.map(histories) { histories ->
-		formatHistories(histories)
-	}
-
-	private fun formatHistories(histories: List<GameHistory>): String {
-		var str = ""
-
-		histories.forEach {
-			str += "\n"
-			str += (if (it.hasEnded) convertLongToDateString(it.matchTimeMilli) else "Ongoing") + "\n"
-			str += "Win : " + it.winCount + "\n"
-			str += "Lost: " + it.loseCount + "\n"
-			str += "Run : " + it.runCount + "\n"
-			str += "Tie : " + it.tieCount + "\n"
-		}
-		return str
-	}
-
 	fun onClear() {
 		uiScope.launch {
 			clear()

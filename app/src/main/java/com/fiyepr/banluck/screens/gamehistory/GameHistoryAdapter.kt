@@ -20,35 +20,15 @@ class GameHistoryAdapter :
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		val item = getItem(position)
-		val resources = holder.itemView.context.resources
-
-		holder.bind(item, resources)
+		holder.bind(item)
 	}
 
 	class ViewHolder private constructor(val binding: ListItemGameHistoryBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
-		fun bind(item: GameHistory, resources: Resources) {
-			binding.txtHistoryDate.text =
-				if (item.hasEnded) convertLongToDateString(item.matchTimeMilli) else "Ongoing"
-			binding.txtHistoryWon.text = resources.getString(R.string.won_summary, item.winCount)
-			binding.txtHistoryLost.text = resources.getString(R.string.lost_summary, item.loseCount)
-			binding.txtHistoryTie.text = resources.getString(R.string.tie_summary, item.tieCount)
-			binding.txtHistoryRun.text = resources.getString(R.string.run_summary, item.runCount)
-
-			Glide.with(itemView).load(
-				if (!item.hasEnded) {
-					R.drawable.history_ongoing
-				} else if (item.winCount > item.loseCount) {
-					R.drawable.history_happy
-				} else if (item.loseCount > item.winCount) {
-					R.drawable.history_sad
-				} else if (item.runCount > item.tieCount) {
-					R.drawable.history_run
-				} else {
-					R.drawable.history_tie
-				}
-			).into(binding.imgHistory)
+		fun bind(item: GameHistory) {
+			binding.game = item
+			binding.executePendingBindings()
 		}
 
 		companion object {
