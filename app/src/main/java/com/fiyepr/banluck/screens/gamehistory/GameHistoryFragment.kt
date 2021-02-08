@@ -35,6 +35,8 @@ class GameHistoryFragment : Fragment() {
 
 		binding.gameHistoryViewModel = gameHistoryViewModel
 
+
+
 		binding.lifecycleOwner = this
 
 		gameHistoryViewModel.showSnackbar.observe(viewLifecycleOwner, {

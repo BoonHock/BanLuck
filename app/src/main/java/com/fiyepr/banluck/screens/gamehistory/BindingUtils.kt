@@ -65,3 +65,16 @@ fun ImageView.setGameImage(item: GameHistory?) {
 		).into(this)
 	}
 }
+
+@BindingAdapter("GameString")
+fun TextView.setGameString(item: GameHistory?) {
+	item?.let {
+		text = context.getString(
+			R.string.game_summary,
+			item.winCount,
+			item.loseCount,
+			item.tieCount,
+			item.runCount
+		)
+	}
+}
