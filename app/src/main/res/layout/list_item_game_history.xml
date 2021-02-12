@@ -8,11 +8,16 @@
         <variable
             name="game"
             type="com.fiyepr.banluck.database.GameHistory" />
+
+        <variable
+            name="clickListener"
+            type="com.fiyepr.banluck.screens.gamehistory.GameHistoryListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(game)}">
 
         <ImageView
             android:id="@+id/img_history"

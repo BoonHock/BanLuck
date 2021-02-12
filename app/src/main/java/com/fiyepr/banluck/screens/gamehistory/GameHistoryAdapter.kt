@@ -1,33 +1,29 @@
 package com.fiyepr.banluck.screens.gamehistory
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.fiyepr.banluck.R
-import com.fiyepr.banluck.convertLongToDateString
 import com.fiyepr.banluck.database.GameHistory
 import com.fiyepr.banluck.databinding.ListItemGameHistoryBinding
 
-class GameHistoryAdapter :
+class GameHistoryAdapter(val clickListener: GameHistoryListener) :
 	ListAdapter<GameHistory, GameHistoryAdapter.ViewHolder>(GameHistoryDiffCallback()) {
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		return ViewHolder.from(parent)
 	}
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-		val item = getItem(position)
-		holder.bind(item)
+		holder.bind(getItem(position)!!, clickListener)
 	}
 
 	class ViewHolder private constructor(val binding: ListItemGameHistoryBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
-		fun bind(item: GameHistory) {
+		fun bind(item: GameHistory, clickListener: GameHistoryListener) {
 			binding.game = item
+			binding.clickListener = clickListener
 			binding.executePendingBindings()
 		}
 
@@ -50,5 +46,8 @@ class GameHistoryDiffCallback : DiffUtil.ItemCallback<GameHistory>() {
 	override fun areContentsTheSame(oldItem: GameHistory, newItem: GameHistory): Boolean {
 		return oldItem == newItem
 	}
+}
 
+class GameHistoryListener(val clickListener: (matchId: Long) -> Unit) {
+	fun onClick(game: GameHistory) = clickListener(game.matchId)
 }
